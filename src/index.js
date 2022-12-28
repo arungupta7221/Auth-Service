@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 
 const { PORT } = require('./config/configServer')
 const apiRoutes = require('./routes/index')
-
+const db = require('./models/index')
 // const {User} = require('./models/index');
 // const bcrypt = require('bcrypt');
 // const UserService = require('./services/user-service')
@@ -17,6 +17,9 @@ const prepareAndStartServer = () => {
 
   app.listen(PORT, async () => {
     console.log(`Server Started on Port: ${PORT}`)
+    if (process.env.DB_SYNC) {
+      db.sequelize.sync({ alter: true })
+    }
     // const incomingpassword = '123456';
     // const user = await User.findByPk(3);
     // const response = bcrypt.compareSync(incomingpassword, user.password);
