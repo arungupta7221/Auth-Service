@@ -5,4 +5,6 @@ const { AuthRequestValidators } = require('../../middlewares/index')
 router.post('/signup', AuthRequestValidators.validateUserAuth, UserController.create)
 router.post('/signin', AuthRequestValidators.validateUserAuth, UserController.signIn)
 router.get('/isAuthenicated', UserController.isAuthenicated)
+
+router.get('/isAdmin', AuthRequestValidators.validateIsAdmin, UserController.isAdmin)
 module.exports = router

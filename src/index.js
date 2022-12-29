@@ -8,7 +8,7 @@ const db = require('./models/index')
 // const bcrypt = require('bcrypt');
 // const UserService = require('./services/user-service')
 const app = express()
-
+// const { User, Role } = require('./models/index')
 const prepareAndStartServer = () => {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
@@ -20,6 +20,10 @@ const prepareAndStartServer = () => {
     if (process.env.DB_SYNC) {
       db.sequelize.sync({ alter: true })
     }
+    // const u1 = await User.findByPk(1)
+    // const r1 = await Role.findByPk(3)
+    // u1.addRole(r1)
+
     // const incomingpassword = '123456';
     // const user = await User.findByPk(3);
     // const response = bcrypt.compareSync(incomingpassword, user.password);
